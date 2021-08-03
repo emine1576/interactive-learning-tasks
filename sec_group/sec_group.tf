@@ -22,7 +22,7 @@ resource "aws_security_group" "sec" {
     from_port        = 22
     to_port          = 22
     protocol         = "tcp"
-    cidr_blocks      = ["50.194.68.230/32"]
+    cidr_blocks      = aws_security_group.sec.cidr_block
     
   }
 
@@ -31,7 +31,8 @@ resource "aws_security_group" "sec" {
     from_port        = 3306
     to_port          = 3306
     protocol         = "tcp"
-    cidr_blocks      = ["50.194.68.230/32"]
+    cidr_blocks      = [aws_security_group.sec.cidr_block]1
+
 
  }
  ingress {
