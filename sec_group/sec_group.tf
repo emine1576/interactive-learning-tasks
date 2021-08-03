@@ -1,12 +1,8 @@
-resource "aws_vpc" "mainvpc" {
-  cidr_block = "172.31.0.0/16"
-}
-
-
-resource "aws_security_group" "sec" {
-  name        = "sec"
+  resource "aws_security_group" "external_by_terraform" {
+  name        = "external_by_terraform"
   description = "Allow sec inbound traffic"
   
+
 
   ingress {
     description      = "TLS from VPC"
@@ -15,6 +11,7 @@ resource "aws_security_group" "sec" {
     protocol         = "tcp"
     cidr_blocks      = ["0.0.0.0/0"]
     
+    
   }
 
  ingress {
@@ -22,7 +19,7 @@ resource "aws_security_group" "sec" {
     from_port        = 22
     to_port          = 22
     protocol         = "tcp"
-    cidr_blocks      = aws_security_group.sec.cidr_block
+    cidr_blocks      = ["50.194.68.230/32"]
     
   }
 
@@ -31,7 +28,7 @@ resource "aws_security_group" "sec" {
     from_port        = 3306
     to_port          = 3306
     protocol         = "tcp"
-    cidr_blocks      = [aws_security_group.sec.cidr_block]1
+    cidr_blocks      = ["50.194.68.231/32"]
 
 
  }
@@ -47,12 +44,20 @@ resource "aws_security_group" "sec" {
   egress {
     from_port        = 0
     to_port          = 0
-    protocol         = "-1"
+    protocol         = "tcp"
     cidr_blocks      = ["0.0.0.0/0"]
 
   }
 
-  tags = {
-    Name = "allow_tls"
-  }
+  
+
+  
 }
+
+
+/*resource "aws_vpc" "default" {
+  cidr_block = "10.1.0.0/16"
+}
+resource "aws_security_group" "allow_tls" {
+vpc_id = aws_vpc.default.id
+ */
