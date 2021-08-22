@@ -1,0 +1,11 @@
+- hosts: all
+  become: yes
+  tasks:  
+    - name: Install MariaDB Server 10.3
+      apt: name=mariadb-server state=latest
+
+    - name: Restart MariaDB 10.3
+      service: 
+        name: apache2
+        state: restarted
+    
