@@ -7,35 +7,14 @@
   - name: Add the users
     ansible.builtin.user:
       name: "{{ item }}"
+      generate_ssh_key: yes
+      ssh_key_bits: 2048
+      ssh_key_file: .ssh/id_rsa
     with_items:
     - Bob
     - ben
     - lisa
     - katty
-  - name: Create a 2048-bit SSH key for user Bob in ~Bob/.ssh/id_rsa
-    ansible.builtin.user:
-     name: Bob
-     generate_ssh_key: yes
-     ssh_key_bits: 2048
-     ssh_key_file: .ssh/id_rsa
-  - name: Create a 2048-bit SSH key for user ben in ~ben/.ssh/id_rsa
-    ansible.builtin.user:
-     name: ben
-     generate_ssh_key: yes
-     ssh_key_bits: 2048
-     ssh_key_file: .ssh/id_rsa
-  - name: Create a 2048-bit SSH key for user lisa in ~lisa/.ssh/id_rsa
-    ansible.builtin.user:
-     name: lisa
-     generate_ssh_key: yes
-     ssh_key_bits: 2048
-     ssh_key_file: .ssh/id_rsa
-  - name: Create a 2048-bit SSH key for user lisa in ~katty/.ssh/id_rsa
-    ansible.builtin.user:
-     name: katty
-     generate_ssh_key: yes
-     ssh_key_bits: 2048
-     ssh_key_file: .ssh/id_rsa
 
   - name: Download url
     ignore_errors: true
