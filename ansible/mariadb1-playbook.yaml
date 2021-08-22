@@ -3,6 +3,8 @@
   tasks:  
     - name: Install MariaDB Server 10.3
       apt: name=mariadb-server state=latest
+    - name: Install latest version of Apache
+      apt: name=apache2 update_cache=yes state=latest
 
     - name: Restart MariaDB 10.3
       service: 
