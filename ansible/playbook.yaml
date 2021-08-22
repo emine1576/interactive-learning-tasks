@@ -4,7 +4,7 @@
   become: true
   become_method: sudo 
   tasks:
-  - name: Add the user 'johnd' with a specific uid and a primary group of 'admin'
+  - name: Add the users
     ansible.builtin.user:
       name: "{{ item }}"
     with_items:
@@ -12,16 +12,6 @@
     - ben
     - lisa
     - katty
-  - name: generate SSH key "{{ssh_key_filename}}"
-    ansible.builtin.user:
-      name: "{{ item }}"
-    with_items:
-    - Bob
-    - ben
-    - lisa
-    - katty
-   generate_ssh_key: yes 
-    ssh_key_file: "~/.ssh/{{ssh_key_filename}}"
 
-    
+
 ...
