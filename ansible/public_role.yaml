@@ -1,9 +1,8 @@
 ---
 - hosts: all
-
+  become: true
+  become_method: sudo
   collections:
     - geerlingguy.php_roles
-
   roles:
     - php
-    

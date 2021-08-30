@@ -42,6 +42,9 @@
     - katty
     - johnd
   - name: adding existing user '{{ item }}' to group devops
+    when: 
+    - ansible_facts['distribution'] == "Ubuntu" 
+    - ansible_facts['distribution_version'] == "16.04" 
     user:
        name: "{{ item }}"
        groups: devops
