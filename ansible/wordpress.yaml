@@ -1,3 +1,4 @@
+
 - name: Install wordpress
   hosts: all
   become: true
